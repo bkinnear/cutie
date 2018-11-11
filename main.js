@@ -6,7 +6,7 @@ window.addEventListener('keydown',this.check,false);
 var player = {
 	x:0,
 	y:0,
-	speed:4
+	speed:12
 }
 
 var onUpdate = {
@@ -34,6 +34,11 @@ function check(e) {
 		onUpdate.moveDown = true;
 		break;
 	}
+}
+
+function clearScreen() {
+	ctx.fillStyle = "00FF00";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawCircle(x, y, r, c) {
