@@ -20,8 +20,16 @@
 			display : inline;
 		}
 		#myCanvas{
-			
+			background-color : white;
 			border : 4px dotted red;
+		}
+		#shopUI{
+			background-color : #A04936;
+			border : 8px solid red;
+			border-radius : 30px;
+			display : none;
+			margin-bottom : 200px;
+			margin-left : -560px;
 		}
 		#status{
 			width : 300px;
@@ -39,6 +47,8 @@
 </head>
 <body>
 	<canvas id="myCanvas" width="600px" height="480px"></canvas>
+	<canvas id="shopUI" width="480px" height="240px"></canvas>
+		
 	<div class="subScreen">
 		<table class="table">
 			<tr>
@@ -49,14 +59,15 @@
 			</tr>
 		</table>
 	</div>
-
+	
 	<script src="main.js"></script>
 	<script src="act.js"></script>
-	<input class="button" id="shop" type="button" onclick="shop()"></input>
+
+	<button class="button" id="shop" type="button" onclick="shop();">Shop</button>
 	<input class="button" id="shop" type="button" value="Shop"></input>
 	<input class="button" id="shop" type="button" value="Shop"></input>
 	<input class="button" id="shop" type="button" value="Shop"></input>
 
-	<p>Hello World!</p>
+	<p id="string">Hello World!</p>
 </body>
 </html>
