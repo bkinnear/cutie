@@ -23,18 +23,17 @@ function check(e) {
 	switch (code) {
 	case 37:	//left
 		onUpdate.moveLeft = true;
-		console.log(code);
+		break;
 	case 38:	//up
 		onUpdate.moveUp = true;
-		console.log(code);
+		break;
 	case 39:	//right
 		onUpdate.moveRight = true;
-		console.log(code);
+		break;
 	case 40:	//down
 		onUpdate.moveDown = true;
-		console.log(code);
+		break;
 	}
-
 }
 
 function drawCircle(x, y, r, c) {
@@ -45,7 +44,7 @@ function drawCircle(x, y, r, c) {
 }
 
 function update() {
-	drawCircle(player.x, player.y, 16, "FF0000");
+	drawCircle(player.x, player.y, 16, "#FF0000");
 
 	if (onUpdate.moveLeft) {
 		onUpdate.moveLeft = false;
