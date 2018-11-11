@@ -68,9 +68,28 @@ function drawCircle(x, y, r, c) {
 	ctx.fill();
 }
 
+function drawPlayer() {
+	drawCircle(player.x, player.y, 16, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
+}
+
+function drawMonsters() {
+	for (var i = 0; i < monsters.length; i++) {
+		mon = monsters[i];
+		drawCircle(player.x, player.y, 16, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
+}
+	}
+}
+
 function update() {
 	clearScreen();
 	
+	drawMonsters();
+	drawPlayer();
+
 	player.direction = Math.atan((mouse_y - player.y) / (mouse_x - player.x));
 	if (mouse_x - player.x < 0)
 		player.direction += Math.PI;
