@@ -6,7 +6,7 @@ window.addEventListener('keydown',this.check,false);
 var player = {
 	x:0,
 	y:0,
-	speed:12
+	speed:6
 }
 
 var onUpdate = {
@@ -20,24 +20,18 @@ var onUpdate = {
 function check(e) {
 	var code = e.keyCode;
 
-	switch (code) {
-	case 37:	//left
+	if (code === 37)	//left
 		onUpdate.moveLeft = true;
-		break;
-	case 38:	//up
+	if (code === 38)	//up
 		onUpdate.moveUp = true;
-		break;
-	case 39:	//right
+	if (code === 39)	//right
 		onUpdate.moveRight = true;
-		break;
-	case 40:	//down
+	if (code === 40)	//down
 		onUpdate.moveDown = true;
-		break;
-	}
 }
 
 function clearScreen() {
-	ctx.fillStyle = "00FF00";
+	ctx.fillStyle = "#00FF00";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -71,4 +65,4 @@ function update() {
 	}
 }
 
-setInterval(update, 25);
+setInterval(update, 15); // approx. 60fps
