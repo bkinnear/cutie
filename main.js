@@ -22,6 +22,8 @@ var onUpdate = {
 var mouse_x;
 var mouse_y;
 
+var monsters = [];
+
 function keyDown(e) {
 	var code = e.keyCode;
 
@@ -73,8 +75,8 @@ function update() {
 	if (mouse_x - player.x < 0)
 		player.direction += Math.PI;
 	drawCircle(player.x, player.y, 16, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 4, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 4, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
 
 	if (onUpdate.moveLeft) {
 		player.x -= player.speed;
@@ -93,3 +95,4 @@ function update() {
 }
 
 setInterval(update, 15); // 66.667fps
+setInterval(addMonster(monsters, 0, 0, "Slime"));
