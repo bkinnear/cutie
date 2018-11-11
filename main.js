@@ -95,4 +95,4 @@ function update() {
 }
 
 setInterval(update, 15); // 66.667fps
-setInterval(addMonster(monsters, 0, 0, "Slime"));
+setInterval(addMonster(monsters, 0, 0, "Slime"), 5000);
