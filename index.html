@@ -2,21 +2,62 @@
 <html>
 <head>
 	<link rel="stylesheet" href="styles.css">
-	<style>
-		myCanvas{
-			color : red;
+	<style type="text/css">
+		body{
+			background-color : black;
 		}
 		p{
 			color : purple;
 		}
-</style>
+		.button{
+			width : 148px;
+			height : 60px;
+		}
+		.table{
+			margin-top : -495px;
+			margin-left : 610px;
+		}
+		.subScreen{
+			display : inline;
+		}
+		#myCanvas{
+			width : 600px;
+			height : 480px;
+			border : 4px dotted red;
+		}
+		#status{
+			width : 300px;
+			height : 170px;
+			border : 4px double red;
+			background-color : #A04936;
+		}
+		#console{
+			width : 300px;
+			height : 295px;
+			border : 4px double red;
+			background-color : gray;
+		}
+	</style>
 </head>
 <body>
-	<canvas id="myCanvas" width="600" height="480" style="border:1px solid #000000">
-	</canvas>
+	<canvas id="myCanvas"></canvas>
+	<div class="subScreen">
+		<table class="table">
+			<tr>
+				<td><canvas id="status"></canvas></td>
+			</tr>
+			<tr>
+				<td><canvas id="console"></canvas></tds>
+			</tr>
+		</table>
+	</div>
+
 	<script src="main.js"></script>
-	<button id="shop">Shop</button>
+	<input class="button" id="shop" type="button" value="Shop"></input>
+	<input class="button" id="shop" type="button" value="Shop"></input>
+	<input class="button" id="shop" type="button" value="Shop"></input>
+	<input class="button" id="shop" type="button" value="Shop"></input>
+
 	<p>Hello World!</p>
 </body>
 </html>
-
