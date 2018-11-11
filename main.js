@@ -5,13 +5,6 @@ window.addEventListener('keydown',this.keyDown,false);
 window.addEventListener('keyup',this.keyUp,false);
 window.addEventListener('mousemove',this.mouseMove,false);
 
-var player = {
-	x:0,
-	y:0,
-	direction:0,
-	speed:3
-}
-
 var onUpdate = {
 	moveLeft: false,
 	moveRight: false,
@@ -35,6 +28,14 @@ function keyDown(e) {
 		onUpdate.moveRight = true;
 	if (code === 40)	//down
 		onUpdate.moveDown = true;
+	if (code === 65)	//left
+		onUpdate.moveLeft = true;
+	if (code === 87)	//up
+		onUpdate.moveUp = true;
+	if (code === 68)	//right
+		onUpdate.moveRight = true;
+	if (code === 83)	//down
+		onUpdate.moveDown = true;
 }
 
 function keyUp(e) {
@@ -47,6 +48,14 @@ function keyUp(e) {
 	if (code === 39)	//right
 		onUpdate.moveRight = false;
 	if (code === 40)	//down
+		onUpdate.moveDown = false;
+	if (code === 65)	//left
+		onUpdate.moveLeft = false; 
+	if (code === 87)	//up
+		onUpdate.moveUp = false;
+	if (code === 68)	//right
+		onUpdate.moveRight = false;
+	if (code === 83)	//down
 		onUpdate.moveDown = false;
 }
 
@@ -77,10 +86,9 @@ function drawPlayer() {
 function drawMonsters() {
 	for (var i = 0; i < monsters.length; i++) {
 		mon = monsters[i];
-		drawCircle(player.x, player.y, 16, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
-}
+		drawCircle(mon.x, mon.y, 16, "#FF0000");
+		drawCircle(mon.x + 22*Math.cos(mon.direction+Math.PI/4), mon.y + 22*Math.sin(mon.direction+Math.PI/4), 5, "#FF0000");
+		drawCircle(mon.x + 22*Math.cos(mon.direction-Math.PI/4), mon.y + 22*Math.sin(mon.direction-Math.PI/4), 5, "#FF0000");
 	}
 }
 
@@ -113,5 +121,10 @@ function update() {
 	
 }
 
+function spawnMonster() {
+	addMonster(monsters, Math.random()*canvas.width, Math.random()*canvas.height, "Slimebo");
+	setTimeout(spawnMonster, 5000);
+}
+
 setInterval(update, 15); // 66.667fps
-setInterval(addMonster(monsters, 0, 0, "Slime"), 5000);
+setTimeout(spawnMonster, 5000);
