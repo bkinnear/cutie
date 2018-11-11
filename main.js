@@ -1,12 +1,15 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-window.addEventListener('keydown',this.check,false);
+window.addEventListener('keydown',this.keyDown,false);
+window.addEventListener('keyup',this.keyUp,false);
+window.addEventListener('mousemove',this.mouseMove,false);
 
 var player = {
 	x:0,
 	y:0,
-	speed:6
+	direction:0,
+	speed:3
 }
 
 var onUpdate = {
@@ -16,8 +19,10 @@ var onUpdate = {
 	moveDown: false
 }
 
+var mouse_x;
+var mouse_y;
 
-function check(e) {
+function keyDown(e) {
 	var code = e.keyCode;
 
 	if (code === 37)	//left
@@ -28,6 +33,25 @@ function check(e) {
 		onUpdate.moveRight = true;
 	if (code === 40)	//down
 		onUpdate.moveDown = true;
+}
+
+function keyUp(e) {
+	var code = e.keyCode;
+
+	if (code === 37)	//left
+		onUpdate.moveLeft = false;
+	if (code === 38)	//up
+		onUpdate.moveUp = false;
+	if (code === 39)	//right
+		onUpdate.moveRight = false;
+	if (code === 40)	//down
+		onUpdate.moveDown = false;
+}
+
+function mouseMove(e) {
+	var rect = canvas.getBoundingClientRect();
+	mouse_x = e.clientX - rect.left;
+	mouse_y = e.clientY - rect.top;
 }
 
 function clearScreen() {
@@ -44,25 +68,28 @@ function drawCircle(x, y, r, c) {
 
 function update() {
 	clearScreen();
-
+	
+	player.direction = Math.atan((mouse_y - player.y) / (mouse_x - player.x));
+	if (mouse_x - player.x < 0)
+		player.direction += Math.PI;
 	drawCircle(player.x, player.y, 16, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 4, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 4, "#FF0000");
 
 	if (onUpdate.moveLeft) {
-		onUpdate.moveLeft = false;
 		player.x -= player.speed;
 	}
 	if (onUpdate.moveRight) {
-		onUpdate.moveRight = false;
 		player.x += player.speed;
 	}
 	if (onUpdate.moveUp) {
-		onUpdate.moveUp = false;
 		player.y -= player.speed;
 	}
 	if (onUpdate.moveDown) {
-		onUpdate.moveDown = false;
 		player.y += player.speed;
 	}
+
+	
 }
 
-setInterval(update, 15); // approx. 60fps
+setInterval(update, 15); // 66.667fps
