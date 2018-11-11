@@ -49,6 +49,8 @@ function drawCircle(x, y, r, c) {
 }
 
 function update() {
+	clearScreen();
+
 	drawCircle(player.x, player.y, 16, "#FF0000");
 
 	if (onUpdate.moveLeft) {
