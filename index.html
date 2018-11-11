@@ -11,6 +11,7 @@
 		.button{
 			width : 148px;
 			height : 60px;
+			font-size : 200%;
 		}
 		.table{
 			margin-top : -495px;
@@ -23,6 +24,11 @@
 			background-color : white;
 			border : 4px dotted red;
 		}
+		#wrapper{
+			display:inline;
+			width : 480px;
+			height : 240px;
+		}
 		#shopUI{
 			background-color : #A04936;
 			border : 8px solid red;
@@ -30,6 +36,21 @@
 			display : none;
 			margin-bottom : 200px;
 			margin-left : -560px;
+			z-index : 1;
+		}
+		#hpBuy{
+			z-index : 2;
+			position : absolute;
+			display : none;
+			top : 100px;
+			left : 360px;
+		}
+		#mpBuy{
+			z-index : 2;
+			position : absolute;
+			display : none;
+			top : 200px;
+			left : 360px;
 		}
 		#status{
 			width : 300px;
@@ -47,7 +68,11 @@
 </head>
 <body>
 	<canvas id="myCanvas" width="600px" height="480px"></canvas>
-	<canvas id="shopUI" width="480px" height="240px"></canvas>
+	<div id="wrapper">
+		<canvas id="shopUI" width="480%" height="240%"></canvas>
+		<button class="button" id="hpBuy">Buy</button>
+		<button class="button" id="mpBuy">Buy</button>
+	</div>
 		
 	<div class="subScreen">
 		<table class="table">
@@ -59,7 +84,7 @@
 			</tr>
 		</table>
 	</div>
-	
+	<script src="monster.js"></script>
 	<script src="main.js"></script>
 	<script src="act.js"></script>
 
