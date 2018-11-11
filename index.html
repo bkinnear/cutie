@@ -6,7 +6,7 @@
 <body>
 
 <script>
-/var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
 function preload() {
 
@@ -16,7 +16,7 @@ function preload() {
     //  string by which we'll identify the image later in our code.
 
     //  The second parameter is the URL of the image (relative)
-    game.load.image('einstein', 'assets/pics/ra_einstein.png');
+    game.load.image('cutie', '/mandarine.jpeg');
 
 }
 
@@ -24,7 +24,7 @@ function create() {
 
     //  This creates a simple sprite that is using our loaded image and
     //  displays it on-screen
-    var s = game.add.sprite(80, 0, 'einstein');
+    var s = game.add.sprite(80, 0, 'cutie');
 
     s.rotation = 0.14;
 
