@@ -20,6 +20,10 @@ var monsters = [];
 function keyDown(e) {
 	var code = e.keyCode;
 
+	if (code == 27)
+		shopClose();
+	
+	// movement
 	if (code === 37)	//left
 		onUpdate.moveLeft = true;
 	if (code === 38)	//up
