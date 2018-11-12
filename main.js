@@ -138,6 +138,12 @@ function distanceTo(targ0, targ1) {
 }
 
 function updatePlayer() {
+	if (player.hp <= 0) {
+		alert("Wow. That was pretty rough.");
+		player.hp = 100;
+		player.gold = -999;
+	}
+
 	// player movement
 	if (onUpdate.moveLeft) {
 		player.x -= player.speed;
@@ -228,6 +234,8 @@ function updateProjectiles() {
 		p = projs[i];
 		p.x += player.proj_speed * Math.cos(p.direction);
 		p.y += player.proj_speed * Math.sin(p.direction);
+		if (player.mp < 0)
+			p.direction += Math.sin(Date().getTime());		
 
 		if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
 			if (projs.length-1 != i)
