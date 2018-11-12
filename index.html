@@ -152,13 +152,13 @@
 		#numBluePotion{
 			height : 26px;
 			position : absolute;
-			top : 440px;
+			top : 465px;
 			left : 780px;
 		}
 		#numRedPotion{
 			height : 26px;
 			position : absolute;
-			top : 465px;
+			top : 440px;
 			left : 780px;
 		}
 	</style>
@@ -182,10 +182,10 @@
 				<td>
 					<div id="inventory">
 						<canvas id="console"></canvas>
-						<button class="items" id="sword" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\sword.png">Sword</img></button>
-						<button class="items" id="minigun" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\minigun.png">Minigun</img></button>
-						<button class="items" id="redPotion" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\redPotion.png" height="40px">Red Potion</img></button>
-						<button class="items" id="bluePotion" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\bluePotion.png" height="40px">Blue Potion</img></button>
+						<button class="items" id="sword" onclick="inventory('sword');"><img src="C:\Users\allen\Desktop\San\작업\sword.png">Sword</img></button>
+						<button class="items" id="minigun" onclick="inventory('minigun');"><img src="C:\Users\allen\Desktop\San\작업\minigun.png">Minigun</img></button>
+						<button class="items" id="redPotion" onclick="inventory('redPotion');"><img src="C:\Users\allen\Desktop\San\작업\redPotion.png" height="40px">Red Potion</img></button>
+						<button class="items" id="bluePotion" onclick="inventory('bluePotion');"><img src="C:\Users\allen\Desktop\San\작업\bluePotion.png" height="40px">Blue Potion</img></button>
 						<button class="items" id="sAttack" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\sAttack.png" height="40px"><br>S. Attack</img></button>
 						<img id="coin" src="C:\Users\allen\Desktop\San\작업\Coin.png">
 						<img id="numRedPotion" src="C:\Users\allen\Desktop\San\작업\redPotion.png">
@@ -204,8 +204,8 @@
 	
 		<table>
 			<tr><button class="button" onclick="shop();" style="margin-left:4px">Shop</button></tr>
-			<tr><button class="small_button" id="aUpgrade">Armor<br>Upgrade</button></tr>
-			<tr><button class="small_button" id="wUpgrade">Weapon<br>Upgrade</button></tr>
+			<tr><button class="small_button" id="aUpgrade" onclick="upgrade('armour')">Armour<br>Upgrade</button></tr>
+			<tr><button class="small_button" id="wUpgrade" onclick="upgrade('weapon')">Weapon<br>Upgrade</button></tr>
 			<tr><button class="button" onclick="quit();">Nothing</button></tr>
 		</table>
 	</div>
