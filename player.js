@@ -4,8 +4,11 @@ var player = {
 	armour:1,
 	sinepower:1,
 	coins:0,
+	bluePotions:0,
+	redPotions:0,
         x:300,
         y:240,
         direction:0,
-        speed:3
+        speed:3,
+	equipped:"melee"
 }

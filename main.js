@@ -16,11 +16,18 @@ var mouse_x;
 var mouse_y;
 
 var monsters = [];
+var projs = [];
+
+var swapArrayElements = function(arr, indexA, indexB) {
+	var temp = arr[indexA];
+	arr[indexA] = arr[indexB];
+	arr[indexB] = temp;
+};
 
 function keyDown(e) {
 	var code = e.keyCode;
 
-	if (code == 27)
+	if (code == 27)		// escape
 		shopClose();
 	
 	// movement
@@ -95,11 +102,15 @@ function drawText(x, y, msg, c) {
 function isColliding(targ0, targ1) {
 	sqrDistance = Math.pow(targ0.x-targ1.x, 2) + Math.pow(targ0.y-targ0.y, 2);
 
-	if (sqrDistance <= 4) {
+	if (sqrDistance <= 256) { // closer centre to centre than 16 pixels
 		return true;
 	} else {
 		return false;
 	}
+}
+
+function distanceTo(targ0, targ1) {
+	return Math.sqrt(Math.pow(targ0.x-targ1.x, 2) + Math.pow(targ0.y-targ1.y, 2));
 }
 
 function updatePlayer() {
@@ -132,8 +143,16 @@ function updateMonsters() {
 	for (var i = 0; i < monsters.length; i++) {
 		mon = monsters[i];
 
+		for (var i = 0; i < projs.length; i++) {
+			if (distanceTo(mon, projs[i]) < 16) {
+				if (projs.length-1 != i)
+					swapArrayElements(projs, i, projs.length-1);
+				projs.pop();
+			}
+		}
+
 		if (isColliding(mon, player)) {
-			if(Math.floor(Math.random()*30) == 0) {
+			if(Math.floor(Math.random()*(5+player.armour)) == 0) {
 				player.hp -= 1;
 			}
 		}
