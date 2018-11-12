@@ -226,8 +226,8 @@ function updateMonsters() {
 function updateProjectiles() {
 	for (var i = 0; i < projs.length; i++) {
 		p = projs[i];
-		p.x += player.proj_speed * cos(p.direction);
-		p.y += player.proj_speed * sin(p.direction);
+		p.x += player.proj_speed * Math.cos(p.direction);
+		p.y += player.proj_speed * Math.sin(p.direction);
 
 		if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
 			if (projs.length-1 != i)

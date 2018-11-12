@@ -2,7 +2,7 @@ var player = {
 	hp:50,
 	damage:1,
 	armour:1,
-	sinepower:1,
+	mp:1,
 	coins:0,
 	bluePotions:0,
 	redPotions:0,
