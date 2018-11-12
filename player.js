@@ -10,5 +10,6 @@ var player = {
         y:240,
         direction:0,
         speed:3,
+	proj_speed:4,
 	equipped:"melee"
 }
