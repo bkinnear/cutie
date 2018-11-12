@@ -70,7 +70,7 @@ function mouseMove(e) {
 }
 
 function clearScreen() {
-	ctx.fillStyle = "#00FF00";
+	ctx.fillStyle = "#00AA00";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -81,34 +81,19 @@ function drawCircle(x, y, r, c) {
 	ctx.fill();
 }
 
-function drawPlayer() {
-	drawCircle(player.x, player.y, 16, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
+function drawRect(x, y, w, h, c) {
+	ctx.fillStyle = c;
+	ctx.fillRect(x, y, w, h);
 }
 
-function drawMonsters() {
-	for (var i = 0; i < monsters.length; i++) {
-		mon = monsters[i];
-		drawCircle(mon.x, mon.y, 16, "#FF0000");
-		drawCircle(mon.x + 22*Math.cos(mon.direction+Math.PI/4), mon.y + 22*Math.sin(mon.direction+Math.PI/4), 5, "#FF0000");
-		drawCircle(mon.x + 22*Math.cos(mon.direction-Math.PI/4), mon.y + 22*Math.sin(mon.direction-Math.PI/4), 5, "#FF0000");
-	}
+function drawText(x, y, msg, c) {
+	ctx.font = "10px Arial";
+	ctx.fillStyle = c;
+	ctx.fillText(msg, x, y);
 }
 
-function update() {
-	clearScreen();
-	
-	drawMonsters();
-	drawPlayer();
-
-	player.direction = Math.atan((mouse_y - player.y) / (mouse_x - player.x));
-	if (mouse_x - player.x < 0)
-		player.direction += Math.PI;
-	drawCircle(player.x, player.y, 16, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
-	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
-
+function updatePlayer() {
+	// player movement
 	if (onUpdate.moveLeft) {
 		player.x -= player.speed;
 	}
@@ -121,8 +106,55 @@ function update() {
 	if (onUpdate.moveDown) {
 		player.y += player.speed;
 	}
-
 	
+	// updating player direction
+	player.direction = Math.atan((mouse_y - player.y) / (mouse_x - player.x));
+	if (mouse_x - player.x < 0)
+		player.direction += Math.PI;
+	
+	// drawing player
+	drawCircle(player.x, player.y, 16, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
+	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
+}
+
+function updateMonsters() {
+	for (var i = 0; i < monsters.length; i++) {
+		mon = monsters[i];
+
+		// moving monster
+		if (mon.x < player.x)
+			mon.x += mon.speed;
+		if (mon.x > player.x)
+			mon.x -= mon.speed;
+		if (mon.y < player.y)
+			mon.y += mon.speed;
+		if (mon.y > player.y)
+			mon.y -= mon.speed;
+
+		// updating monster direction
+		mon.direction = Math.atan((player.y - mon.y) / (player.x - mon.x));
+		if (player.x - mon.x < 0)
+			mon.direction += Math.PI;
+	
+		// drawing monster
+		drawCircle(mon.x, mon.y, 16, "#003300");
+		drawCircle(mon.x + 22*Math.cos(mon.direction+Math.PI/4), mon.y + 22*Math.sin(mon.direction+Math.PI/4), 5, "#003300");
+		drawCircle(mon.x + 22*Math.cos(mon.direction-Math.PI/4), mon.y + 22*Math.sin(mon.direction-Math.PI/4), 5, "#003300");
+
+		// labelling monster
+		drawText(mon.x-20, mon.y-36, mon.type, "#000000");
+
+		// drawing hp
+		drawRect(mon.x-16, mon.y-34, 32, 6, "#00FF00");
+	}
+}
+
+function update() {
+	clearScreen();	
+
+	updateMonsters();
+	updatePlayer();
 }
 
 function spawnMonster() {
