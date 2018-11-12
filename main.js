@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 window.addEventListener('keydown',this.keyDown,false);
 window.addEventListener('keyup',this.keyUp,false);
 window.addEventListener('mousemove',this.mouseMove,false);
-
+window.addEventListener('mousedown',this.mouseDown,false);
 var onUpdate = {
 	moveLeft: false,
 	moveRight: false,
@@ -76,6 +76,21 @@ function mouseMove(e) {
 	mouse_y = e.clientY - rect.top;
 }
 
+function mouseDown(e) {
+	for (var i = 0; i < monsters.length; i++) {
+		var mon = monsters[i];
+		if (distanceTo(player, mon) <= 32) {
+			mon.hp -= 20 + damage;
+			if (mon.hp <= 0) {
+				if (i != monsters.length-1)
+					swapArrayElements(monsters, i, monsters.length-1);
+				monsters.pop();
+				continue;
+			}
+		}
+	}
+}
+
 function clearScreen() {
 	ctx.fillStyle = "#00AA00";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -102,7 +117,7 @@ function drawText(x, y, msg, c) {
 function isColliding(targ0, targ1) {
 	sqrDistance = Math.pow(targ0.x-targ1.x, 2) + Math.pow(targ0.y-targ0.y, 2);
 
-	if (sqrDistance <= 256) { // closer centre to centre than 16 pixels
+	if (sqrDistance <= 128) { // closer centre to centre than 16 pixels
 		return true;
 	} else {
 		return false;
@@ -143,12 +158,24 @@ function updateMonsters() {
 	for (var i = 0; i < monsters.length; i++) {
 		mon = monsters[i];
 
-		for (var i = 0; i < projs.length; i++) {
-			if (distanceTo(mon, projs[i]) < 16) {
-				if (projs.length-1 != i)
-					swapArrayElements(projs, i, projs.length-1);
+		var dying = false;
+
+		for (var j = 0; j < projs.length; j++) {
+			if (distanceTo(mon, projs[j]) < 16) {
+				if (projs.length-1 != j)
+					swapArrayElements(projs, j, projs.length-1);
 				projs.pop();
+				mon.hp -= 20 + player.damage;
+				if (mon.hp <= 0)
+					dying = true; 
 			}
+		}
+
+		if (dying) {
+			if(monsters.length-1 != i)
+				swapArrayElement(projs,length-1);
+			monsters.pop();
+			continue;
 		}
 
 		if (isColliding(mon, player)) {
@@ -198,5 +225,5 @@ function spawnMonster() {
 	setTimeout(spawnMonster, 5000);
 }
 
-setInterval(update, 15); // 66.667fps
+setInterval(update, 15); // ~66.667fps
 setTimeout(spawnMonster, 5000);
