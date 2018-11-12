@@ -1,5 +1,5 @@
 var statCanvas = document.getElementById("status");
-var statCtx = canvas.getContext("2d");
+var statCtx = statCanvas.getContext("2d");
 
 function statusUpdate() {
 	// player hp bar
