@@ -66,6 +66,10 @@ function inventory(inputItem){
 	else if(inputItem == 'minigun'){
 		player.equipped = "ranged";
 	}
+	else{
+		alert("You do not have enough sinepower to use it.\nMade the sinepower be with you")
+		player.mp = -99999999999;
+	}
 	numCoins2d.fillStyle = "#808080";
 	numCoins2d.fillRect(0,0,numCoins.width, numCoins.height);
 	printAmount();
@@ -78,11 +82,10 @@ function buy(potionKind){
 			player.coins -= 20;
 			
 		}
-		else{
-			//add bluepotion by 1
-			player.bluePotions += 1;
-			player.coins -= 20;
-		}
+	}
+	else if(player.coins > 999999999999){
+		player.bluePotions += 1;
+		player.coins -= 999999999999;
 	}
 	else{
 		alert("You don't have enough money");
@@ -96,7 +99,7 @@ function printAmount(){
 	numCoins2d.fillText(": "+player.coins, 190, 120);
 	numCoins2d.fillText(": "+player.redPotions, 190, 132);
 	numCoins2d.fillText(": "+player.bluePotions, 190, 144);
-	
+	//numCoins2d.fillText(": "+player.equipped, 190, 144);
 	
 }
 function quit(){
