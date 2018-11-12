@@ -5,6 +5,7 @@ window.addEventListener('keydown',this.keyDown,false);
 window.addEventListener('keyup',this.keyUp,false);
 window.addEventListener('mousemove',this.mouseMove,false);
 window.addEventListener('mousedown',this.mouseDown,false);
+
 var onUpdate = {
 	moveLeft: false,
 	moveRight: false,
@@ -77,17 +78,25 @@ function mouseMove(e) {
 }
 
 function mouseDown(e) {
-	for (var i = 0; i < monsters.length; i++) {
-		var mon = monsters[i];
-		if (distanceTo(player, mon) <= 32) {
-			mon.hp -= 20 + damage;
-			if (mon.hp <= 0) {
-				if (i != monsters.length-1)
-					swapArrayElements(monsters, i, monsters.length-1);
-				monsters.pop();
-				continue;
+	if (player.equipped = "melee") {
+		for (var i = 0; i < monsters.length; i++) {
+			var mon = monsters[i];
+			if (distanceTo(player, mon) <= 32) {
+				mon.hp -= 20 + player.damage;
+				if (mon.hp <= 0) {
+					if (i != monsters.length-1)
+						swapArrayElements(monsters, i, monsters.length-1);
+					monsters.pop();
+					continue;
+				}
 			}
 		}
+	} else {
+		var p = new Object();
+		p.direction = player.direction;
+		p.x = player.x;
+		p.y = player.y;
+		projs.push(p);
 	}
 }
 
@@ -149,6 +158,7 @@ function updatePlayer() {
 		player.direction += Math.PI;
 	
 	// drawing player
+	drawCircle(player.x, player.y, 16, "#FF0000");
 	drawCircle(player.x, player.y, 16, "#FF0000");
 	drawCircle(player.x + 22*Math.cos(player.direction+Math.PI/4), player.y + 22*Math.sin(player.direction+Math.PI/4), 5, "#FF0000");
 	drawCircle(player.x + 22*Math.cos(player.direction-Math.PI/4), player.y + 22*Math.sin(player.direction-Math.PI/4), 5, "#FF0000");
@@ -213,11 +223,29 @@ function updateMonsters() {
 	}
 }
 
+function updateProjectiles() {
+	for (var i = 0; i < projs.length; i++) {
+		p = projs[i];
+		p.x += player.proj_speed * cos(p.direction);
+		p.y += player.proj_speed * sin(p.direction);
+
+		if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+			if (projs.length-1 != i)
+				swapArrayElements(projs, i, projs.length-1);
+			projs.pop();
+			continue;
+		}	
+
+		drawCircle(p.x, p.y, 2, "#FFFF00");
+	}
+}
+
 function update() {
 	clearScreen();	
 
 	updateMonsters();
 	updatePlayer();
+	updateProjectiles();
 }
 
 function spawnMonster() {
