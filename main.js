@@ -92,6 +92,16 @@ function drawText(x, y, msg, c) {
 	ctx.fillText(msg, x, y);
 }
 
+function isColliding(targ0, targ1) {
+	sqrDistance = Math.pow(targ0.x-targ1.x, 2) + Math.pow(targ0.y-targ0.y, 2);
+
+	if (sqrDistance <= 4) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function updatePlayer() {
 	// player movement
 	if (onUpdate.moveLeft) {
@@ -121,6 +131,12 @@ function updatePlayer() {
 function updateMonsters() {
 	for (var i = 0; i < monsters.length; i++) {
 		mon = monsters[i];
+
+		if (isColliding(mon, player)) {
+			if(Math.random()*120) {
+				player.hp -= 1;
+			}
+		}
 
 		// moving monster
 		if (mon.x < player.x)
