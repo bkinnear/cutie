@@ -97,6 +97,7 @@ function printAmount(){
 	numCoins2d.fillText(": "+player.redPotions, 190, 132);
 	numCoins2d.fillText(": "+player.bluePotions, 190, 144);
 	
+	
 }
 function quit(){
 	player.hp -= 1;
