@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<style type="text/css">
@@ -28,7 +27,7 @@
 			width : 148px;
 			height : 60px;
 			font-size : 140%;
-			margin-bottom : -50px;
+			margin-top : -30px;
 		}
 		.items{
 			z-index : 2;
@@ -101,6 +100,10 @@
 			margin-left : 3px;
 			background-color : #A04936;
 		}
+		#inventory{
+			top : 240px;
+			right : 520px;
+		}
 		#sword{
 			position : absolute;
 			top : 240px;
@@ -113,13 +116,18 @@
 		}
 		#redPotion{
 			position : absolute;
-			top : 330px;
+			top : 325px;
 			right : 520px;
 		}
 		#bluePotion{
 			position : absolute;
-			top : 330px;
+			top : 325px;
 			right : 390px;
+		}
+		#sAttack{
+			position : absolute;
+			top : 410px;
+			right : 520px;
 		}
 	</style>
 </head>
@@ -127,9 +135,9 @@
 	<canvas id="myCanvas" width="600px" height="480px"></canvas>
 	<div id="wrapper">
 		<canvas id="shopUI" width="480%" height="240%"></canvas>
-		<img class="shop" id="hpPotion" src="assets/redPotion.png" alt="Red Potion">
+		<img class="shop" id="hpPotion" src="C:\Users\allen\Desktop\San\작업\redPotion.png" alt="Red Potion">
 		<button class="shop" id="hpBuy">Buy</button>
-		<img class="shop" id="mpPotion" src="assets/bluePotion.png" alt="Blue Potion">
+		<img class="shop" id="mpPotion" src="C:\Users\allen\Desktop\San\작업\bluePotion.png" alt="Blue Potion">
 		<button class="shop" id="mpBuy">Buy</button>
 	</div>
 		
@@ -142,10 +150,11 @@
 				<td>
 					<div id="inventory">
 						<canvas id="console"></canvas>
-						<button class="items" id="sword" onclick="inventory();"><img src="assets/sword.png">Sword</img></button>
-						<button class="items" id="minigun" onclick="inventory();"><img src="assets/minigun.png">Minigun</img></button>
-						<button class="items" id="redPotion" onclick="inventory();"><img src="assets/작업\redPotion.png" height="40px">Red Potion</img></button>
-						<button class="items" id="bluePotion" onclick="inventory();"><img src="assets/bluePotion.png" height="40px">Blue Potion</img></button>
+						<button class="items" id="sword" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\sword.png">Sword</img></button>
+						<button class="items" id="minigun" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\minigun.png">Minigun</img></button>
+						<button class="items" id="redPotion" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\redPotion.png" height="40px">Red Potion</img></button>
+						<button class="items" id="bluePotion" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\bluePotion.png" height="40px">Blue Potion</img></button>
+						<button class="items" id="sAttack" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\sAttack.png" height="40px"><br>S. Attack</img></button>
 
 					</div>
 				</td>
@@ -154,9 +163,11 @@
 	</div>
 	<script src="monster.js"></script>
 	<script src="player.js"></script>
+	<script src="status.js"></script>
 	<script src="act.js"></script>
 	<script src="main.js"></script>
 	<div id="playerButtons">
+	
 		<table>
 			<tr><button class="button" onclick="shop();" style="margin-left:4px">Shop</button></tr>
 			<tr><button class="small_button">Armor Upgrade</button></tr>
