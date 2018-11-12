@@ -78,7 +78,7 @@ function mouseMove(e) {
 }
 
 function mouseDown(e) {
-	if (player.equipped = "melee") {
+	if (player.equipped == "melee") {
 		for (var i = 0; i < monsters.length; i++) {
 			var mon = monsters[i];
 			if (distanceTo(player, mon) <= 32) {
