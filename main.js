@@ -87,6 +87,7 @@ function mouseDown(e) {
 					if (i != monsters.length-1)
 						swapArrayElements(monsters, i, monsters.length-1);
 					monsters.pop();
+					player.coins += 12;
 					continue;
 				}
 			}
@@ -141,7 +142,7 @@ function updatePlayer() {
 	if (player.hp <= 0) {
 		alert("Wow. That was pretty rough.");
 		player.hp = 100;
-		player.gold = -999;
+		player.coins = -999;
 	}
 
 	// player movement
@@ -191,6 +192,7 @@ function updateMonsters() {
 			if(monsters.length-1 != i)
 				swapArrayElement(projs,length-1);
 			monsters.pop();
+			player.coins += 20;
 			continue;
 		}
 
@@ -235,7 +237,7 @@ function updateProjectiles() {
 		p.x += player.proj_speed * Math.cos(p.direction);
 		p.y += player.proj_speed * Math.sin(p.direction);
 		if (player.mp < 0)
-			p.direction += Math.sin(Date().getTime());		
+			p.direction += Math.random()*15;		
 
 		if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
 			if (projs.length-1 != i)
