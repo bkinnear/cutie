@@ -133,7 +133,7 @@ function updateMonsters() {
 		mon = monsters[i];
 
 		if (isColliding(mon, player)) {
-			if(Math.random()*30 == 0) {
+			if(Math.floor(Math.random()*30) == 0) {
 				player.hp -= 1;
 			}
 		}
