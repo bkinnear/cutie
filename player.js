@@ -1,5 +1,5 @@
 var player = {
-	hp:100,
+	hp:50,
 	damage:1,
 	armour:1,
 	sinepower:1,
