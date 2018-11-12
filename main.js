@@ -146,7 +146,8 @@ function updateMonsters() {
 		drawText(mon.x-20, mon.y-36, mon.type, "#000000");
 
 		// drawing hp
-		drawRect(mon.x-16, mon.y-34, 32, 6, "#00FF00");
+		drawRect(mon.x-16, mon.y-34, 32, 6, "#000000");
+		drawRect(mon.x-16, mon.y-34, 32*(mon.hp/100), 6, "#00FF00");
 	}
 }
 
