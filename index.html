@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<style type="text/css">
@@ -26,11 +27,13 @@
 		.small_button{
 			width : 148px;
 			height : 60px;
-			font-size : 140%;
-			margin-top : -30px;
+			font-size : 110%;
+			position : absolute;
+			top : 497px;
+			left : 130px;
 		}
 		.items{
-			z-index : 2;
+			z-index : 1;
 			width : 75px;
 			height : 75px;
 		}
@@ -107,27 +110,56 @@
 		#sword{
 			position : absolute;
 			top : 240px;
-			right : 520px;
+			left : 670px;
 		}
 		#minigun{
 			position : absolute;
 			top : 240px;
-			right : 390px;
+			left : 800px;
+
 		}
 		#redPotion{
 			position : absolute;
 			top : 325px;
-			right : 520px;
+			left : 670px;
 		}
 		#bluePotion{
 			position : absolute;
 			top : 325px;
-			right : 390px;
+			left : 800px;
 		}
 		#sAttack{
 			position : absolute;
 			top : 410px;
-			right : 520px;
+			left : 670px;
+		}
+		#aUpgrade{
+			position : absolute;
+			top : 497px;
+			left : 312px;
+		}
+		#wUpgrade{
+			position : absolute;
+			top : 497px;
+			left : 460px;
+		}
+		#coin{
+			height : 26px;
+			position : absolute;
+			top : 413px;
+			left : 780px;
+		}
+		#numBluePotion{
+			height : 26px;
+			position : absolute;
+			top : 440px;
+			left : 780px;
+		}
+		#numRedPotion{
+			height : 26px;
+			position : absolute;
+			top : 465px;
+			left : 780px;
 		}
 	</style>
 </head>
@@ -136,9 +168,9 @@
 	<div id="wrapper">
 		<canvas id="shopUI" width="480%" height="240%"></canvas>
 		<img class="shop" id="hpPotion" src="C:\Users\allen\Desktop\San\작업\redPotion.png" alt="Red Potion">
-		<button class="shop" id="hpBuy">Buy</button>
+		<button class="shop" id="hpBuy" onclick="buy('hp')">Buy</button>
 		<img class="shop" id="mpPotion" src="C:\Users\allen\Desktop\San\작업\bluePotion.png" alt="Blue Potion">
-		<button class="shop" id="mpBuy">Buy</button>
+		<button class="shop" id="mpBuy" onclick="buy('mp')">Buy</button>
 	</div>
 		
 	<div class="subScreen">
@@ -155,7 +187,9 @@
 						<button class="items" id="redPotion" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\redPotion.png" height="40px">Red Potion</img></button>
 						<button class="items" id="bluePotion" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\bluePotion.png" height="40px">Blue Potion</img></button>
 						<button class="items" id="sAttack" onclick="inventory();"><img src="C:\Users\allen\Desktop\San\작업\sAttack.png" height="40px"><br>S. Attack</img></button>
-
+						<img id="coin" src="C:\Users\allen\Desktop\San\작업\Coin.png">
+						<img id="numRedPotion" src="C:\Users\allen\Desktop\San\작업\redPotion.png">
+						<img id="numBluePotion" src="C:\Users\allen\Desktop\San\작업\bluePotion.png">
 					</div>
 				</td>
 			</tr>
@@ -170,9 +204,9 @@
 	
 		<table>
 			<tr><button class="button" onclick="shop();" style="margin-left:4px">Shop</button></tr>
-			<tr><button class="small_button">Armor Upgrade</button></tr>
-			<tr><button class="small_button">Weapon Upgrade</button></tr>
-			<tr><button class="button" onclick="quit()">Quit</button></tr>
+			<tr><button class="small_button" id="aUpgrade">Armor<br>Upgrade</button></tr>
+			<tr><button class="small_button" id="wUpgrade">Weapon<br>Upgrade</button></tr>
+			<tr><button class="button" onclick="quit();">Nothing</button></tr>
 		</table>
 	</div>
 
