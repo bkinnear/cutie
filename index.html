@@ -24,6 +24,17 @@
 		.subScreen{
 			display : inline;
 		}
+		.small_button{
+			width : 148px;
+			height : 60px;
+			font-size : 140%;
+			margin-bottom : -50px;
+		}
+		.items{
+			z-index : 2;
+			width : 75px;
+			height : 75px;
+		}
 		#myCanvas{
 			background-color : white;
 			border : 4px dotted red;
@@ -82,15 +93,43 @@
 			left : 100px;
 			top : 240px;
 		}
+		#playerButtons{
+			width : 600px;
+			height : 77px;
+			border : 1px solid red;
+			margin-top : -7px;
+			margin-left : 3px;
+			background-color : #A04936;
+		}
+		#sword{
+			position : absolute;
+			top : 240px;
+			right : 520px;
+		}
+		#minigun{
+			position : absolute;
+			top : 240px;
+			right : 390px;
+		}
+		#redPotion{
+			position : absolute;
+			top : 330px;
+			right : 520px;
+		}
+		#bluePotion{
+			position : absolute;
+			top : 330px;
+			right : 390px;
+		}
 	</style>
 </head>
 <body>
 	<canvas id="myCanvas" width="600px" height="480px"></canvas>
 	<div id="wrapper">
 		<canvas id="shopUI" width="480%" height="240%"></canvas>
-		<img class="shop" id="hpPotion" src="C:\Users\allen\Desktop\San\작업\redPotion.png" alt="Red Potion">
+		<img class="shop" id="hpPotion" src="assets/redPotion.png" alt="Red Potion">
 		<button class="shop" id="hpBuy">Buy</button>
-		<img class="shop" id="mpPotion" src="C:\Users\allen\Desktop\San\작업\bluePotion.png" alt="Blue Potion">
+		<img class="shop" id="mpPotion" src="assets/bluePotion.png" alt="Blue Potion">
 		<button class="shop" id="mpBuy">Buy</button>
 	</div>
 		
@@ -100,7 +139,16 @@
 				<td><canvas id="status"></canvas></td>
 			</tr>
 			<tr>
-				<td><canvas id="console"></canvas></tds>
+				<td>
+					<div id="inventory">
+						<canvas id="console"></canvas>
+						<button class="items" id="sword" onclick="inventory();"><img src="assets/sword.png">Sword</img></button>
+						<button class="items" id="minigun" onclick="inventory();"><img src="assets/minigun.png">Minigun</img></button>
+						<button class="items" id="redPotion" onclick="inventory();"><img src="assets/작업\redPotion.png" height="40px">Red Potion</img></button>
+						<button class="items" id="bluePotion" onclick="inventory();"><img src="assets/bluePotion.png" height="40px">Blue Potion</img></button>
+
+					</div>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -108,11 +156,14 @@
 	<script src="player.js"></script>
 	<script src="act.js"></script>
 	<script src="main.js"></script>
-
-	<button class="button" id="shop" type="button" onclick="shop();">Shop</button>
-	<input class="button" id="shop" type="button" value="Shop"></input>
-	<input class="button" id="shop" type="button" value="Shop"></input>
-	<button class="button" id="shop" type="button" onclick="quit()">Quit</input>
+	<div id="playerButtons">
+		<table>
+			<tr><button class="button" onclick="shop();" style="margin-left:4px">Shop</button></tr>
+			<tr><button class="small_button">Armor Upgrade</button></tr>
+			<tr><button class="small_button">Weapon Upgrade</button></tr>
+			<tr><button class="button" onclick="quit()">Quit</button></tr>
+		</table>
+	</div>
 
 	<p class="string">Hello World!</p>
 </body>
